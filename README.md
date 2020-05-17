@@ -1,2 +1,2 @@
 # mySlackBot
-bot by go
+
