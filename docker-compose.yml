@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: local
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/my.cnf
+    ports:
+      - "3306:3306"
+  goose:
+    build: misc/goose/
+    container_name: goose
+    volumes:
+      - ./misc/goose/:/app
+    depends_on:
+      - db
+    environment:
+      - DB_USR=root
+      - DB_PW=password
+      - DB_NM=local
