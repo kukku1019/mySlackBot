@@ -23,7 +23,6 @@ func main() {
 		switch ev := msg.Data.(type) {
 		case *slack.HelloEvent:
 			// Ignore hello
-
 		case *slack.ConnectedEvent:
 			fmt.Println("Infos:", ev.Info)
 			fmt.Println("Connection counter:", ev.ConnectionCount)
@@ -48,9 +47,11 @@ func main() {
 		case *slack.InvalidAuthEvent:
 			fmt.Printf("Invalid credentials")
 			return
-
 		default:
-
+			_, _, _, err := rtm.Client.SendMessage()
+			if err != nil {
+				// TODO logger
+			}
 			// Ignore other events..
 			// fmt.Printf("Unexpected: %v\n", msg.Data)
 		}
