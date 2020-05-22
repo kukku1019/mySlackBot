@@ -48,10 +48,6 @@ func main() {
 			fmt.Printf("Invalid credentials")
 			return
 		default:
-			_, _, _, err := rtm.Client.SendMessage()
-			if err != nil {
-				// TODO logger
-			}
 			// Ignore other events..
 			// fmt.Printf("Unexpected: %v\n", msg.Data)
 		}
